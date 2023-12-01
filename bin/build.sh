@@ -7,14 +7,12 @@ if [[ "${DEBUG}" == "true" ]]; then
 fi
 
 
-TOOL_VERSION=${VERSION}
 farch=x64
 darch=linux/amd64
 
 if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
-  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null 2>&1
   export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++
 #  export DEVELOPMENT_SKIP_GETTING_ASSET=true
 fi
@@ -25,7 +23,7 @@ fi
 mkdir .cache
 
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress --platform-arch=${farch}
+npm install "re2@${VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress --platform-arch=${farch}
 
 # if [[ "$ARCH" = "aarch64" ]]; then
   #echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"

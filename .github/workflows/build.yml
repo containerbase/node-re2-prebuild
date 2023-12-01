@@ -56,6 +56,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install arm64 dependencies
+        if: matrix.arch == 'aarch64'
+        run: |
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+
       - name: build for ${{ matrix.node-version }} ${{ matrix.arch }}
         run: ./bin/build.sh
 
