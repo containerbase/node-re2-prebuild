@@ -15,7 +15,7 @@ if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
   sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null
-  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++  CC_host="gcc -m32" CXX_host="g++ -m32"
+#  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++  CC_host="gcc -m32" CXX_host="g++ -m32"
 fi
 
 # echo "Prepare builder for ${ARCH}"
@@ -24,11 +24,11 @@ fi
 mkdir .cache
 
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
+npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress --arch=${farch}
 
 if [[ "$ARCH" = "aarch64" ]]; then
   echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-  npm explore re2 --prefix .cache -- npm run rebuild
+  #npm explore re2 --prefix .cache -- npm run rebuild --arch=arm
 fi
 
 echo "Testing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
