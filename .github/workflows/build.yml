@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: false
+      # fail-fast: false
       matrix:
         arch:
           - x86_64
