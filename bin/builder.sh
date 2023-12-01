@@ -28,7 +28,7 @@ echo "Building ${NAME} ${TOOL_VERSION} for Node ${NODE_VERSION} ${ARCH}"
 
 install-tool node "${NODE_VERSION}"
 
-npm install "${NAME}@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix /build
+npm install "${NAME}@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix /build --no-progress
 
 mod=$(node -e 'console.log(process.versions.modules)')
 

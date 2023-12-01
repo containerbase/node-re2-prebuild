@@ -20,7 +20,7 @@ docker build -t node-re2-builder --load --platform ${darch} .
 
 echo "Building re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
 mkdir .cache
-docker run --rm -t \
+docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
   node-re2-builder \
