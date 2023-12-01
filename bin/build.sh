@@ -26,15 +26,18 @@ mkdir .cache
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
 npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
 
-ls -la .cache/node_modules/re2/build/Release
+if [[ "$ARCH" = "aarch64" ]]; then
+  echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
+  npm explore re2 --prefix .cache -- npm run rebuild
+fi
 
 echo "Testing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-docker pull node:20 > /dev/null
+docker pull "node:${NODE_VERSION}" > /dev/null
 docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
   -w /cache \
-  node:20 \
+  "node:${NODE_VERSION}" \
   node -e "new require('re2')('.*').exec('test') && console.log(process.arch)"
 
 echo "Compressing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
