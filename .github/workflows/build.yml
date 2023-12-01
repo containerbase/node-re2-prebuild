@@ -29,7 +29,8 @@ jobs:
           - x86_64
           - aarch64
         node-version:
-          - 20.10.0
+          - 20
+          - 18
 
     env:
       ARCH: ${{ matrix.arch }}
