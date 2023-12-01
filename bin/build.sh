@@ -28,11 +28,11 @@ npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .ca
 
 if [[ "$ARCH" = "aarch64" ]]; then
   echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-  #npm explore re2 --prefix .cache -- npm run rebuild --arch=arm
+  npm explore re2 --prefix .cache -- npm run rebuild --arch=arm
 fi
 
 echo "Testing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-docker pull "node:${NODE_VERSION}" > /dev/null
+docker pull "node:${NODE_VERSION}" > /dev/null 2>&1
 docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
