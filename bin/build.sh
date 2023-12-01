@@ -26,7 +26,6 @@ mkdir .cache
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
 npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
 
-
 echo "Building re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
 docker run --rm \
   --platform ${darch} \
@@ -38,6 +37,6 @@ docker run --rm \
 echo "Compressing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
 mod=$(node -e 'console.log(process.versions.modules)')
 #brotli -n -Z ".cache/linux-${farch}-${mod}" -o ".cache/linux-${farch}-${mod}.br"
-brotli -n -Z node_modules/re2/build/Release/re2.node -o ".cache/linux-${farch}-${mod}.br"
+brotli -n -Z .cache/node_modules/re2/build/Release/re2.node -o ".cache/linux-${farch}-${mod}.br"
 
 ls -la .cache
