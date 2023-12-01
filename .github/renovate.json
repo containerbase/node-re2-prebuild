@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["local>containerbase/.github"],
+  "packageRules": [
+    {
+      "description": "Allow minor updates on renovate rebuild trigger files",
+      "matchFiles": ["renovate.Dockerfile"],
+      "matchUpdateTypes": ["minor"],
+      "enabled": true
+    },
+    {
+      "description": "Allow re2 updates immediately",
+      "matchPackageNames": ["re2"],
+      "minimumReleaseAge": null
+    }
+  ]
+}
