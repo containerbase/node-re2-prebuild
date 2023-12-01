@@ -51,6 +51,11 @@ jobs:
       BUILDX_NO_DEFAULT_LOAD: 1
 
     steps:
+      - name: docker-config
+        uses: containerbase/internal-tools@cce4ed496d2180a0ea727e82ec3e838c68d107b0 # v3.0.18
+        with:
+          command: docker-config
+
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           show-progress: false
