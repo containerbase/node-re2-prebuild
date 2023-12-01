@@ -1,9 +1,0 @@
-{
-  "image": "node-re2",
-  "depName": "re2",
-  "datasource": "npm",
-  "versioning": "semver",
-  "startVersion": "1.20.9",
-  "ignoredVersions": [],
-  "allowedVersions": ">=1.20.9"
-}
