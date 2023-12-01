@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -eox pipefail
 
 if [[ "${DEBUG}" == "true" ]]; then
   set -x
@@ -15,7 +15,8 @@ if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
   sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null 2>&1
-#  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++  CC_host="gcc -m32" CXX_host="g++ -m32"
+  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++
+   #  CC_host="gcc -m32" CXX_host="g++ -m32"
   export DEVELOPMENT_SKIP_GETTING_ASSET=true
 fi
 
