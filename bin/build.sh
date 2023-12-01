@@ -15,7 +15,7 @@ if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
   sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
-  export CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++
+  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++
 fi
 
 # echo "Prepare builder for ${ARCH}"
