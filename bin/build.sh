@@ -24,7 +24,7 @@ fi
 mkdir .cache
 
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-npm install "${NAME}@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
+npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
 
 
 echo "Building re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
