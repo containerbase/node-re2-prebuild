@@ -28,7 +28,6 @@ npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .ca
 
 
 echo "Building re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-mkdir .cache
 docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
