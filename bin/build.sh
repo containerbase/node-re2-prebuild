@@ -30,6 +30,6 @@ docker run --rm -t \
 mod=$(node -e 'console.log(process.versions.modules)')
 
 echo "Compressing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-brotli -Z ".cache/linux-${farch}-${mod}" -o ".cache/linux-${farch}-${mod}.br"
+brotli -n -Z ".cache/linux-${farch}-${mod}" -o ".cache/linux-${farch}-${mod}.br"
 
 ls -la .cache
