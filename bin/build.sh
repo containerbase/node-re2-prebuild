@@ -2,20 +2,29 @@
 
 set -eo pipefail
 
+if [[ "${DEBUG}" == "true" ]]; then
+  set -x
+fi
+
+
+TOOL_VERSION=${VERSION}
 farch=x64
 darch=linux/amd64
 
 if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
+  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+  export CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++
 fi
 
-if [[ "${DEBUG}" == "true" ]]; then
-  set -x
-fi
+# echo "Prepare builder for ${ARCH}"
+# docker build -t node-re2-builder --load --platform ${darch} .
 
-echo "Prepare builder for ${ARCH}"
-docker build -t node-re2-builder --load --platform ${darch} .
+mkdir .cache
+
+echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
+npm install "${NAME}@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress
 
 
 echo "Building re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
@@ -23,13 +32,13 @@ mkdir .cache
 docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
-  node-re2-builder \
-  "${NODE_VERSION}"
-
-
-mod=$(node -e 'console.log(process.versions.modules)')
+  -w /cache \
+  node:20 \
+  node -e "new require('re2')('.*').exec('test')"
 
 echo "Compressing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-brotli -n -Z ".cache/linux-${farch}-${mod}" -o ".cache/linux-${farch}-${mod}.br"
+mod=$(node -e 'console.log(process.versions.modules)')
+#brotli -n -Z ".cache/linux-${farch}-${mod}" -o ".cache/linux-${farch}-${mod}.br"
+brotli -n -Z node_modules/re2/build/Release/re2.node -o ".cache/linux-${farch}-${mod}.br"
 
 ls -la .cache
