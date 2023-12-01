@@ -23,7 +23,7 @@ fi
 mkdir .cache
 
 echo "Installing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-npm install "re2@${VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress --platform-arch=${farch}
+npm install "re2@${VERSION}" --save-exact --no-audit --no-fund --prefix .cache --no-progress --platform-arch=${farch} --arch=${farch}
 
 # if [[ "$ARCH" = "aarch64" ]]; then
   #echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
