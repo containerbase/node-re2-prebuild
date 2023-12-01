@@ -14,7 +14,7 @@ darch=linux/amd64
 if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
-  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null
+  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null 2>&1
 #  export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++  CC_host="gcc -m32" CXX_host="g++ -m32"
   export DEVELOPMENT_SKIP_GETTING_ASSET=true
 fi
@@ -29,11 +29,11 @@ npm install "re2@${TOOL_VERSION}" --save-exact --no-audit --no-fund --prefix .ca
 
 if [[ "$ARCH" = "aarch64" ]]; then
   echo "Rebuilding re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-  #npm explore re2 --prefix .cache -- npm run rebuild --arch=${farch}
+  npm explore re2 --prefix .cache -- npm run rebuild --arch=${farch}
 fi
 
 echo "Testing re2 v${VERSION} for Node v${NODE_VERSION} (${farch})"
-docker pull "node:${NODE_VERSION}" > /dev/null 2>&1
+docker pull --platform ${darch} "node:${NODE_VERSION}" > /dev/null 2>&1
 docker run --rm \
   --platform ${darch} \
   -v "$(pwd)/.cache:/cache" \
