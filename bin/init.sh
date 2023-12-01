@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-FROM=$(grep 'NODE_RE2_VERSION' Dockerfile)
+FROM=$(grep 'NODE_RE2_VERSION' renovate.Dockerfile)
 SEMVER_REGEX="=v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[a-z0-9]+)?"
 
 
