@@ -14,7 +14,7 @@ darch=linux/amd64
 if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
   darch=linux/arm64
-  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+  sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu > /dev/null
   export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++  CC_host="gcc -m32" CXX_host="g++ -m32"
 fi
 
