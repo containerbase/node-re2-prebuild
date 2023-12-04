@@ -112,6 +112,6 @@ jobs:
           body: See https://github.com/uhop/node-re2#release-history for more changes
           commit: ${{ github.sha }}
           name: ${{ env.VERSION }}
-          tag: v${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: .cache/**
