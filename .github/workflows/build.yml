@@ -20,7 +20,9 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # lowest possible glibc version
+    # TODO: use docker to build?
+    runs-on: ubuntu-20.04
 
     strategy:
       # fail-fast: false
