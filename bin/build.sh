@@ -11,7 +11,11 @@ farch=x64
 darch=linux/amd64
 # glibc v2.31 (like Ubuntu 20.04)
 nodeDist=bullseye
-# TODO: set mirror
+
+# TODO: set mirror?
+
+# allow parallel builds
+export JOBS=max
 
 if [[ "$ARCH" = "aarch64" ]]; then
   farch=arm64
