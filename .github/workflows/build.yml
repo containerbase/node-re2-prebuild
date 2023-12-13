@@ -61,7 +61,8 @@ jobs:
       - name: Install dependencies for ${{ matrix.arch }}
         if: matrix.arch == 'aarch64'
         run: |
-          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+          sudo apt-get update -qq
+          sudo apt-get -q install -qq -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
       - name: Build for Node ${{ matrix.node-version }}
         run: ./bin/build.sh
