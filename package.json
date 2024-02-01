@@ -7,8 +7,8 @@
   "scripts": {
     "lint": "run-s prettier",
     "prepare": "husky install",
-    "prettier": "prettier '{**/*,*}.*' --check --ignore-unknown",
-    "prettier:fix": "prettier '{**/*,*}.*' --write --ignore-unknown"
+    "prettier": "prettier --cache -c -u '**/*.*'",
+    "prettier-fix": "prettier --cache -w -u '**/*.*'"
   },
   "devDependencies": {
     "husky": "8.0.3",
