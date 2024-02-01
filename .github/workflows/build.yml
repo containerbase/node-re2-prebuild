@@ -84,7 +84,7 @@ jobs:
       - name: Save artifacts
         uses: actions/upload-artifact@26f96dfa697d77e81fd5907df203aa23a56210a8 # v4.3.0
         with:
-          name: binaries
+          name: binaries-${{ matrix.arch }}-${{ matrix.node-version }}
           if-no-files-found: error
           path: |
             .cache/*.br
@@ -119,8 +119,9 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
         with:
-          name: binaries
+          pattern: binaries-*
           path: .cache
+          merge-multiple: true
 
       - uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5 # v1.13.0
         if: github.ref_name == 'main'
