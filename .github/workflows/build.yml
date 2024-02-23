@@ -128,6 +128,7 @@ jobs:
         if: github.ref_name == 'main'
         with:
           allowUpdates: true
+          skipIfReleaseExists: true
           body: See https://github.com/uhop/node-re2#release-history for more changes
           commit: ${{ github.sha }}
           name: ${{ env.VERSION }}
